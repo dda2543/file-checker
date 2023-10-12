@@ -1,0 +1,19 @@
+{
+    "name": "dda2543/file-cheker",
+    "description": "Библиотека отслеживания изменения файлов в директории.",
+    "autoload": {
+        "psr-4": {
+            "Dda2543\\FileCheker\\": "src/",
+            "Dda2543\\FileCheker\\Example\\": "example/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Дмитрий Демченко",
+            "email": "dda2543@icloud.com"
+        }
+    ],
+    "require": {
+        "symfony/event-dispatcher": "^5.4"
+    }
+}
