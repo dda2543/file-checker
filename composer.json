@@ -1,6 +1,7 @@
 {
     "name": "dda2543/file-cheker",
     "description": "Библиотека отслеживания изменения файлов в директории.",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "Dda2543\\FileCheker\\": "src/",
