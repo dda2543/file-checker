@@ -1,5 +1,5 @@
 <?php
-namespace Dda2543\FileCheker\Interfases;
+namespace Dda2543\FileChecker\Interfases;
 
 use Exception;
 

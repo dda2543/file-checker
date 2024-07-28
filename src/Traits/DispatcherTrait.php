@@ -1,7 +1,7 @@
 <?php
-namespace Dda2543\FileCheker\Traits;
+namespace Dda2543\FileChecker\Traits;
 
-use Dda2543\FileCheker\Events\Event;
+use Dda2543\FileChecker\Events\Event;
 use Exception;
 use LogicException;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -49,7 +49,7 @@ trait DispatcherTrait{
     public function dispatch(Event $event = null)
     {
         $eventName = $event::getName();
-        $event->setFileCheker($this);
+        $event->setFileChecker($this);
         
         if (!isset($this->dispatched[$eventName])) {
             $this->dispatched[$eventName] = 1;

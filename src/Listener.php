@@ -1,8 +1,8 @@
 <?php
-namespace Dda2543\FileCheker;
+namespace Dda2543\FileChecker;
 
-use Dda2543\FileCheker\Events\Event;
-use Dda2543\FileCheker\Interfases\EventInterfase;
+use Dda2543\FileChecker\Events\Event;
+use Dda2543\FileChecker\Interfases\EventInterfase;
 
 abstract class Listener{
 

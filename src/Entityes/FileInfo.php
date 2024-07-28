@@ -1,6 +1,6 @@
 <?php
 
-namespace Dda2543\FileCheker\Entityes;
+namespace Dda2543\FileChecker\Entityes;
 
 use Exception;
 

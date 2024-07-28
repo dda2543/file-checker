@@ -1,11 +1,11 @@
 <?php
 
-namespace Dda2543\FileCheker\Events;
+namespace Dda2543\FileChecker\Events;
 
 class ChangesNotFound extends Event{
 
     public static function getName(): string
     {
-        return 'filecheker.chang.not_found';
+        return 'FileChecker.chang.not_found';
     }
 }

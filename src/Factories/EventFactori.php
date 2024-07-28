@@ -1,6 +1,6 @@
 <?php
 
-namespace Dda2543\FileCheker\Factories;
+namespace Dda2543\FileChecker\Factories;
 
 class EventFactori{
     
