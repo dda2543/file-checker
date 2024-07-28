@@ -1,8 +1,8 @@
 <?php
 
-namespace Dda2543\FileCheker\Events;
+namespace Dda2543\FileChecker\Events;
 
-use Dda2543\FileCheker\Entityes\DiffFileList;
+use Dda2543\FileChecker\Entityes\DiffFileList;
 
 class ChangesFound extends Event{
     public $diff;
@@ -18,6 +18,6 @@ class ChangesFound extends Event{
     }
 
     public static function getName():string{
-        return 'filecheker.chang.found';
+        return 'FileChecker.chang.found';
     }
 }

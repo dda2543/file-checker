@@ -1,5 +1,5 @@
 <?php
-namespace Dda2543\FileCheker\Traits;
+namespace Dda2543\FileChecker\Traits;
 
 use Exception;
 

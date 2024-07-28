@@ -1,11 +1,11 @@
 <?php
 
-namespace Dda2543\FileCheker\Interfases;
+namespace Dda2543\FileChecker\Interfases;
 
-use Dda2543\FileCheker\FileCheker;
+use Dda2543\FileChecker\FileChecker;
 
 interface EventInterfase{
 
     public static function getName():string;
-    public function setFileCheker(FileCheker $fileCheker);
+    public function setFileChecker(FileChecker $FileChecker);
 }

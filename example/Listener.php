@@ -1,16 +1,16 @@
 <?php
 
-namespace Dda2543\FileCheker\Example;
+namespace Dda2543\FileChecker\Example;
 
-use Dda2543\FileCheker\Events\ChangesFound;
-use Dda2543\FileCheker\Listener as FileChekerListener;
+use Dda2543\FileChecker\Events\ChangesFound;
+use Dda2543\FileChecker\Listener as FileCheckerListener;
 
-class Listener extends FileChekerListener{
+class Listener extends FileCheckerListener{
 
     /**
      * Обработчик событий
      *
-     * @param \Dda2543\FileCheker\Events\ChangesFound $event
+     * @param \Dda2543\FileChecker\Events\ChangesFound $event
      *
      * @return void
      */

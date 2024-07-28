@@ -1,9 +1,9 @@
 <?php
 
-namespace Dda2543\FileCheker\Entityes;
+namespace Dda2543\FileChecker\Entityes;
 
-use Dda2543\FileCheker\Interfases\ReadOnlyInterfase;
-use Dda2543\FileCheker\Traits\ReadOnlyTrait;
+use Dda2543\FileChecker\Interfases\ReadOnlyInterfase;
+use Dda2543\FileChecker\Traits\ReadOnlyTrait;
 use Exception;
 use Iterator;
 /**

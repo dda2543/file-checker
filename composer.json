@@ -4,8 +4,8 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Dda2543\\FileCheker\\": "src/",
-            "Dda2543\\FileCheker\\Example\\": "example/"
+            "Dda2543\\FileChecker\\": "src/",
+            "Dda2543\\FileChecker\\Example\\": "example/"
         }
     },
     "authors": [

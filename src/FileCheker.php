@@ -1,22 +1,22 @@
 <?php
-namespace Dda2543\FileCheker;
+namespace Dda2543\FileChecker;
 
-use Dda2543\FileCheker\Entityes\DiffFileList;
-use Dda2543\FileCheker\Entityes\FileInfo;
-use Dda2543\FileCheker\Entityes\FileLists;
-use Dda2543\FileCheker\Entityes\IncludeExtensionList;
-use Dda2543\FileCheker\Events\ChangesFound;
-use Dda2543\FileCheker\Events\ChangesNotFound;
-use Dda2543\FileCheker\Interfases\ReadOnlyInterfase;
-use Dda2543\FileCheker\Traits\DispatcherTrait;
-use Dda2543\FileCheker\Traits\ReadOnlyTrait;
+use Dda2543\FileChecker\Entityes\DiffFileList;
+use Dda2543\FileChecker\Entityes\FileInfo;
+use Dda2543\FileChecker\Entityes\FileLists;
+use Dda2543\FileChecker\Entityes\IncludeExtensionList;
+use Dda2543\FileChecker\Events\ChangesFound;
+use Dda2543\FileChecker\Events\ChangesNotFound;
+use Dda2543\FileChecker\Interfases\ReadOnlyInterfase;
+use Dda2543\FileChecker\Traits\DispatcherTrait;
+use Dda2543\FileChecker\Traits\ReadOnlyTrait;
 
 /**
  * Сканер директории на предмет изменения файлов
  * 
  * 
  */
-class FileCheker implements ReadOnlyInterfase{
+class FileChecker implements ReadOnlyInterfase{
     use ReadOnlyTrait;
 	use DispatcherTrait;
 	/**
@@ -101,7 +101,7 @@ class FileCheker implements ReadOnlyInterfase{
 	/**
 	 * Найти разницу между состояниями файлов
 	 *
-	 * @return \Dda2543\FileCheker\Entityes\DiffFileList
+	 * @return \Dda2543\FileChecker\Entityes\DiffFileList
 	 */
 	private function diff():DiffFileList
 	{

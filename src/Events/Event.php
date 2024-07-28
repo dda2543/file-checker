@@ -1,22 +1,22 @@
 <?php
 
-namespace Dda2543\FileCheker\Events;
+namespace Dda2543\FileChecker\Events;
 
-use Dda2543\FileCheker\FileCheker;
-use Dda2543\FileCheker\Interfases\EventInterfase;
+use Dda2543\FileChecker\FileChecker;
+use Dda2543\FileChecker\Interfases\EventInterfase;
 
 abstract class Event implements EventInterfase{
     /**
      * Соступ к основному классу проверки изменения файлов
      *
-     * @var FileCheker
+     * @var FileChecker
      */
-    public $fileCheker;
+    public $FileChecker;
 
     abstract public static function getName():string;
     
-    public function setFileCheker(FileCheker $fileCheker){
-        $this->fileCheker = $fileCheker;
+    public function setFileChecker(FileChecker $FileChecker){
+        $this->FileChecker = $FileChecker;
         return $this;
     }
 }
