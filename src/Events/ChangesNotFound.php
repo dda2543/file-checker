@@ -2,7 +2,8 @@
 
 namespace Dda2543\FileChecker\Events;
 
-class ChangesNotFound extends Event{
+class ChangesNotFound extends Event
+{
 
     public static function getName(): string
     {

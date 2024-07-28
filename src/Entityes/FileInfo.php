@@ -24,7 +24,8 @@ use Exception;
  * @property-read int    $blksize   Размер блока ввода-вывода файловой системы (Windows вернёт -1)
  * @property-read int    $blocks    Количество используемых 512-байтных блоков (Windows вернёт -1)
  */
-class FileInfo{
+class FileInfo
+{
 
     private $filePath;
 
@@ -43,14 +44,14 @@ class FileInfo{
     private $blksize;
     private $blocks;
 
-    
+
     /**
      * Class constructor.
      */
     public function __construct(string $filePath)
     {
         $this->filePath = $filePath;
-        
+
         $stat = stat($this->filePath);
 
         $this->dev      = $stat['dev'];
@@ -70,7 +71,9 @@ class FileInfo{
 
     public function __get(string $name)
     {
-        if(!property_exists($this, $name)) throw new Exception("Свойство '$name' не определено.");
+        if (!property_exists($this, $name)) {
+            throw new Exception("Свойство '$name' не определено.");
+        }
         return $this->$name;
     }
 }

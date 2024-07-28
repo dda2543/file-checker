@@ -2,7 +2,6 @@
 
 namespace Dda2543\FileChecker\Factories;
 
-class EventFactori{
-    
+class EventFactori
+{
 }
-
