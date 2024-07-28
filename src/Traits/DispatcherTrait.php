@@ -1,13 +1,15 @@
 <?php
+
 namespace Dda2543\FileChecker\Traits;
 
-use Dda2543\FileChecker\Events\Event;
 use Exception;
 use LogicException;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Dda2543\FileChecker\Events\Event;
 use Symfony\Component\EventDispatcher\EventDispatcher;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
-trait DispatcherTrait{
+trait DispatcherTrait
+{
 
     private $dispatcher;
 
@@ -27,6 +29,7 @@ trait DispatcherTrait{
             throw new LogicException("Event Dispatcher can not be changed once the Daemon is initialized");
         }
         $this->dispatcher = $dispatcher;
+
         return $this;
     }
 
@@ -50,13 +53,16 @@ trait DispatcherTrait{
     {
         $eventName = $event::getName();
         $event->setFileChecker($this);
-        
+
         if (!isset($this->dispatched[$eventName])) {
             $this->dispatched[$eventName] = 1;
         } else {
             $this->dispatched[$eventName]++;
         }
-        return $this->getEventDispatcher()->dispatch($event, $eventName);
+
+        return $this
+            ->getEventDispatcher()
+            ->dispatch($event, $eventName);
     }
 
     /**
@@ -70,13 +76,19 @@ trait DispatcherTrait{
      */
     public function on(string $event, callable $callback, int $priority = 0): self
     {
-        if(!is_a($event, Event::class, true)) throw new Exception("События должны наследоваться от ". Event::class);
-        $eventName = $event::getName();
+        if (!is_a($event, Event::class, true)){
+            throw new Exception("События должны наследоваться от " . Event::class);
+        }
+        
         if (!is_callable($callback)) {
             throw self::createInvalidArgumentException(func_get_args(), 'Invalid callable argument #2');
         }
 
-        $this->getEventDispatcher()->addListener($eventName, $callback, $priority);
+        $eventName = $event::getName();
+        $this
+            ->getEventDispatcher()
+            ->addListener($eventName, $callback, $priority);
+
         return $this;
     }
 
@@ -90,9 +102,14 @@ trait DispatcherTrait{
      */
     public function off(string $event, callable $callback): self
     {
-        if(!is_a($event, Event::class, true)) throw new Exception("События должны наследоваться от ". Event::class);
+        if (!is_a($event, Event::class, true)) {
+            throw new Exception("События должны наследоваться от " . Event::class);
+        }
         $eventName = $event::getName();
-        $this->getEventDispatcher()->removeListener($eventName, $callback);
+        $this
+            ->getEventDispatcher()
+            ->removeListener($eventName, $callback);
+            
         return $this;
     }
 }

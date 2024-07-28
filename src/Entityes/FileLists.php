@@ -2,67 +2,77 @@
 
 namespace Dda2543\FileChecker\Entityes;
 
-use Dda2543\FileChecker\Interfases\ReadOnlyInterfase;
-use Dda2543\FileChecker\Traits\ReadOnlyTrait;
-use Exception;
 use Iterator;
+use Exception;
+use Dda2543\FileChecker\Traits\ReadOnlyTrait;
+use Dda2543\FileChecker\Interfases\ReadOnlyInterfase;
+
 /**
  * Хранилище состояния файлов
  * 
  * @property-read FileInfo[] $currentFiles  Текущий список файлов
  * @property-read FileInfo[] $previousFiles Предыдущий список файлов
  */
-class FileLists implements ReadOnlyInterfase{
+class FileLists implements ReadOnlyInterfase
+{
     use ReadOnlyTrait;
 
     private $currentFiles;
     private $previousFiles;
 
-    public function getReadOnlyProperties():array{
+    public function getReadOnlyProperties(): array
+    {
         return [
             'currentFiles',
             'previousFiles'
         ];
     }
 
-    public function resertCurrentFiles(){
+    public function resertCurrentFiles()
+    {
         $this->previousFiles = $this->currentFiles;
         $this->currentFiles = [];
 
         return $this;
     }
 
-    public function add(FileInfo $fileInfo){
-        if(isset($this->currentFiles[$fileInfo->filePath])) throw new Exception('Попытка дважды добавить один и тот же файл!:'.$fileInfo->filePath);
+    public function add(FileInfo $fileInfo)
+    {
+        if (isset($this->currentFiles[$fileInfo->filePath])) {
+            throw new Exception('Попытка дважды добавить один и тот же файл!:' . $fileInfo->filePath);
+        }
+
         $this->currentFiles[$fileInfo->filePath] = $fileInfo;
+
         return $this;
     }
 
-    public function diff(){
+    public function diff()
+    {
         $diff = new DiffFileList();
         $this->sort();
 
         $currentFiles   = $this->currentFiles;
         $previousFiles  = $this->previousFiles;
 
-        if(empty($previousFiles)){
+        if (empty($previousFiles)) {
             $this->previousFiles = $currentFiles;
             return $diff;
         }
 
         //exit;
-        foreach($previousFiles as $path=>$info){
-            if(!isset($currentFiles[$path])){
+        foreach ($previousFiles as $path => $info) {
+            if (!isset($currentFiles[$path])) {
                 $diff->addDeletedFile($info);
                 continue;
             }
-            if(DiffFileList::isChanged( $info, $currentFiles[$path])){
+            if (DiffFileList::isChanged($info, $currentFiles[$path])) {
                 $diff->addChangedFile($currentFiles[$path]);
             }
             unset($currentFiles[$path]);
         }
 
-        foreach($currentFiles as $fileInfo){
+        foreach ($currentFiles as $fileInfo) {
             $diff->addNewFile($fileInfo);
         }
 
@@ -70,7 +80,8 @@ class FileLists implements ReadOnlyInterfase{
         return $diff;
     }
 
-    private function sort(){
+    private function sort()
+    {
         $currentFiles = &$this->currentFiles;
         ksort($currentFiles);
         /*, function( FileInfo $fa, FileInfo $fb ){
@@ -84,5 +95,4 @@ class FileLists implements ReadOnlyInterfase{
         */
         return $this;
     }
-
 }

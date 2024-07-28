@@ -1,23 +1,25 @@
 <?php
+
 namespace Dda2543\FileChecker;
 
-use Dda2543\FileChecker\Entityes\DiffFileList;
 use Dda2543\FileChecker\Entityes\FileInfo;
 use Dda2543\FileChecker\Entityes\FileLists;
-use Dda2543\FileChecker\Entityes\IncludeExtensionList;
 use Dda2543\FileChecker\Events\ChangesFound;
-use Dda2543\FileChecker\Events\ChangesNotFound;
-use Dda2543\FileChecker\Interfases\ReadOnlyInterfase;
-use Dda2543\FileChecker\Traits\DispatcherTrait;
 use Dda2543\FileChecker\Traits\ReadOnlyTrait;
+use Dda2543\FileChecker\Entityes\DiffFileList;
+use Dda2543\FileChecker\Events\ChangesNotFound;
+use Dda2543\FileChecker\Traits\DispatcherTrait;
+use Dda2543\FileChecker\Interfases\ReadOnlyInterfase;
+use Dda2543\FileChecker\Entityes\IncludeExtensionList;
 
 /**
  * Сканер директории на предмет изменения файлов
  * 
  * 
  */
-class FileChecker implements ReadOnlyInterfase{
-    use ReadOnlyTrait;
+class FileChecker implements ReadOnlyInterfase
+{
+	use ReadOnlyTrait;
 	use DispatcherTrait;
 	/**
 	 * папка, которую контролируем (включая подпапки)
@@ -33,14 +35,14 @@ class FileChecker implements ReadOnlyInterfase{
 	 */
 	public $includeExtensions;
 
-	
+
 	/**
 	 * Обработчик списков файлов 
 	 *
 	 * @var FileLists
 	 */
 	private $fileList;
-	
+
 
 	/**
 	 * Измененные файлы
@@ -61,20 +63,21 @@ class FileChecker implements ReadOnlyInterfase{
 
 	public function __construct(string $rootdir = './', array $includeExtensions = ['*'])
 	{
-		$this->rootdir 				= $rootdir;
-		$this->fileList				= new FileLists();
-		$this->includeExtensions 	= new IncludeExtensionList();
+		$this->rootdir = $rootdir;
+		$this->fileList = new FileLists();
+		$this->includeExtensions = new IncludeExtensionList();
 		$this->includeExtensions->set($includeExtensions);
 	}
 
 
-    public function getReadOnlyProperties():array{
-        return [
-            'rootdir',
-            'fileList',
+	public function getReadOnlyProperties(): array
+	{
+		return [
+			'rootdir',
+			'fileList',
 			'runFlag',
-        ];
-    }
+		];
+	}
 	/**
 	 * функция сбора информации о файлах в директории
 	 *
@@ -82,18 +85,25 @@ class FileChecker implements ReadOnlyInterfase{
 	 *
 	 * @return void
 	 */
-	private function checkDir(string $cat) {
+	private function checkDir(string $cat)
+	{
 		$extensions = $this->includeExtensions->toArray();
 		$dir = dir($cat);
-		while($file = $dir->read()) {
-			if ($file=='.' or $file=='..') continue;
-			if (is_dir($cat.$file)) {
-				$this->checkDir($cat.$file.'/');
+		while ($file = $dir->read()) {
+			if ($file == '.' or $file == '..') {
+				continue;
 			}
+
+			if (is_dir($cat . $file)) {
+				$this->checkDir($cat . $file . '/');
+			}
+
 			//включаем в сканирование только файлы с расширениями из массива
-			if ((count($extensions)==0)||!in_array(pathinfo($file, PATHINFO_EXTENSION),$extensions)) { continue; }
-			
-			$fileInfo = new FileInfo($cat.$file);
+			if ((count($extensions) == 0) || !in_array(pathinfo($file, PATHINFO_EXTENSION), $extensions)) {
+				continue;
+			}
+
+			$fileInfo = new FileInfo($cat . $file);
 			$this->fileList->add($fileInfo);
 		}
 	}
@@ -103,34 +113,44 @@ class FileChecker implements ReadOnlyInterfase{
 	 *
 	 * @return \Dda2543\FileChecker\Entityes\DiffFileList
 	 */
-	private function diff():DiffFileList
+	private function diff(): DiffFileList
 	{
 		$diff = $this->fileList->diff();
 
 		return $diff;
 	}
 
-	
-	public function checkChanges():DiffFileList{
-		$this->fileList->resertCurrentFiles();
+
+	public function checkChanges(): DiffFileList
+	{
+		$this
+			->fileList
+			->resertCurrentFiles();
 		$this->checkDir($this->rootdir);
 		$diff = $this->diff();
-		if($diff->isEmpty()) $this->dispatch(new ChangesNotFound());
-		else $this->dispatch(new ChangesFound($diff));
+		if ($diff->isEmpty()) {
+			$this->dispatch(new ChangesNotFound());
+		} else {
+			$this->dispatch(new ChangesFound($diff));
+		}
+		
 		return $diff;
 	}
 
-	public function run(){
+	public function run()
+	{
 		$this->runFlag = true;
 		$this->loop();
 	}
 
-	public function stop(){
+	public function stop()
+	{
 		$this->runFlag = false;
 	}
 
-	private function loop(){
-		while($this->runFlag){
+	private function loop()
+	{
+		while ($this->runFlag) {
 			$this->checkChanges();
 		}
 	}
