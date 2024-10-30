@@ -3,9 +3,9 @@
 namespace Dda2543\FileChecker\Events;
 
 use Dda2543\FileChecker\FileChecker;
-use Dda2543\FileChecker\Interfases\EventInterfase;
+use Dda2543\FileChecker\Interfaces\EventInterface;
 
-abstract class Event implements EventInterfase
+abstract class Event implements EventInterface
 {
     /**
      * Соступ к основному классу проверки изменения файлов

@@ -17,5 +17,12 @@
     "require": {
         "php": ">=7.2.5",
         "symfony/event-dispatcher": "^5.4"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.64"
+    },
+    "scripts": {
+        "lint": " ./vendor/bin/php-cs-fixer fix --dry-run  --diff ./",
+        "lint-fix": " ./vendor/bin/php-cs-fixer fix ./"
     }
 }

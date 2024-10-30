@@ -10,7 +10,6 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 trait DispatcherTrait
 {
-
     private $dispatcher;
 
     /**
@@ -76,10 +75,10 @@ trait DispatcherTrait
      */
     public function on(string $event, callable $callback, int $priority = 0): self
     {
-        if (!is_a($event, Event::class, true)){
+        if (!is_a($event, Event::class, true)) {
             throw new Exception("События должны наследоваться от " . Event::class);
         }
-        
+
         if (!is_callable($callback)) {
             throw self::createInvalidArgumentException(func_get_args(), 'Invalid callable argument #2');
         }
@@ -109,7 +108,7 @@ trait DispatcherTrait
         $this
             ->getEventDispatcher()
             ->removeListener($eventName, $callback);
-            
+
         return $this;
     }
 }

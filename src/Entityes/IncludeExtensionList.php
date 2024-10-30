@@ -34,7 +34,7 @@ class IncludeExtensionList extends BaseList
         if (!array_search($value, $this->array)) {
             $this->array[] = $value;
         }
-        
+
         return $this;
     }
 }

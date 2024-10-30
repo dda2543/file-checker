@@ -34,7 +34,7 @@ class DiffFileList
         );
     }
 
-    static function isChanged(FileInfo $oldInfo, FileInfo $newInfo)
+    public static function isChanged(FileInfo $oldInfo, FileInfo $newInfo)
     {
         $propertyes = [
             'size',

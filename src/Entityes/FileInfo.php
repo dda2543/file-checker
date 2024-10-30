@@ -6,10 +6,10 @@ use Exception;
 
 /**
  * Информация о файле
- * 
+ *
  * @property-read string $filePath
- * 
- * 
+ *
+ *
  * @property-read int    $dev       Номер устройства (В Windows, начиная с PHP 7.4.0, это серийный номер тома, содержащего файл)
  * @property-read int    $ino       Номер inode
  * @property-read int    $mode      Режим защиты inode
@@ -26,7 +26,6 @@ use Exception;
  */
 class FileInfo
 {
-
     private $filePath;
 
     private $dev;

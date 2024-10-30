@@ -7,7 +7,6 @@ use Dda2543\FileChecker\Listener as FileCheckerListener;
 
 class Listener extends FileCheckerListener
 {
-
     /**
      * Обработчик событий
      *

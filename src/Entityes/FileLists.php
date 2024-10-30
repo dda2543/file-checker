@@ -5,15 +5,15 @@ namespace Dda2543\FileChecker\Entityes;
 use Iterator;
 use Exception;
 use Dda2543\FileChecker\Traits\ReadOnlyTrait;
-use Dda2543\FileChecker\Interfases\ReadOnlyInterfase;
+use Dda2543\FileChecker\Interfaces\ReadOnlyInterface;
 
 /**
  * Хранилище состояния файлов
- * 
+ *
  * @property-read FileInfo[] $currentFiles  Текущий список файлов
  * @property-read FileInfo[] $previousFiles Предыдущий список файлов
  */
-class FileLists implements ReadOnlyInterfase
+class FileLists implements ReadOnlyInterface
 {
     use ReadOnlyTrait;
 
